@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "",
+  "info": {
+    "name": "tutorial-content",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "datetime",
+      "required": true
+    },
+    "slidesLink": {
+      "type": "string"
+    },
+    "code_snippet": {
+      "type": "component",
+      "repeatable": true,
+      "component": "media.code-snippet"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_upload_code_snippets",
+  "info": {
+    "name": "code-snippet",
+    "icon": "laptop-code",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "string",
+      "regex": "repl|gitlab|github"
+    },
+    "link": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}
