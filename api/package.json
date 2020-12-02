@@ -7,7 +7,8 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "push": "react-scripts build && rsync -av build root@site:/var/www/api.teach.spanishpe.ar/"
   },
   "devDependencies": {},
   "dependencies": {
