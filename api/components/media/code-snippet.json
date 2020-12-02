@@ -7,15 +7,19 @@
   },
   "options": {},
   "attributes": {
-    "platform": {
-      "type": "string",
-      "regex": "repl|gitlab|github"
-    },
     "link": {
       "type": "string"
     },
     "title": {
       "type": "string"
+    },
+    "platform": {
+      "type": "enumeration",
+      "enum": [
+        "repl",
+        "gitlab",
+        "github"
+      ]
     }
   }
 }

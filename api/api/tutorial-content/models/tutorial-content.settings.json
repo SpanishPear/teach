@@ -1,6 +1,6 @@
 {
   "kind": "collectionType",
-  "collectionName": "",
+  "collectionName": "tutorial-content",
   "info": {
     "name": "tutorial-content",
     "description": ""
@@ -19,13 +19,25 @@
       "type": "datetime",
       "required": true
     },
-    "slidesLink": {
+    "slides_link": {
       "type": "string"
     },
     "code_snippet": {
       "type": "component",
       "repeatable": true,
       "component": "media.code-snippet"
+    },
+    "topics": {
+      "type": "component",
+      "repeatable": true,
+      "component": "metadata.topics"
+    },
+    "num_attended": {
+      "type": "integer",
+      "private": true
+    },
+    "week": {
+      "type": "string"
     }
   }
 }

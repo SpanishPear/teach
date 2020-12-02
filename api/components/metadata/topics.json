@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_metadata_topics",
+  "info": {
+    "name": "topics",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "topic": {
+      "type": "string"
+    }
+  }
+}
