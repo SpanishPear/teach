@@ -14,6 +14,7 @@ const LandingPage = () => {
     axios.get(url).then((res) => setTutorial(res.data[0]));
   }, [classcode]);
 
+  console.log(tutorial.weeks);
   return tutorial === undefined ? (
     <Box
       display="flex"
@@ -30,15 +31,14 @@ const LandingPage = () => {
       alignItems="center"
       justifyContent="center"
     >
-      {tutorial.tutorial_contents !== undefined ? (
-        tutorial.tutorial_contents
+      {tutorial.weeks !== undefined ? (
+        tutorial.weeks
           .slice()
-          // .reverse() -- perhaps itd be better with the most recent tut first?
-          .map((data) => (
+          .map((weekNum) => (
             <TutorialOverviewCard
               subject={tutorial.course_code}
-              key={data.id}
-              data={data}
+              key={weekNum}
+              weekNum={weekNum}
             />
           ))
       ) : (

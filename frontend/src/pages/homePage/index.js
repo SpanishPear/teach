@@ -3,7 +3,7 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { TutorialCard } from '../../components';
+import { TutorialDetailsCard } from '../../components';
 import API_URL from '../../api';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,6 +49,7 @@ const Home = () => {
   useEffect(() => {
     Axios.get(`${API_URL}/tutorials`).then((res) => setTutorials(res.data));
   }, []);
+
   return (
     <Box
       height="80vh"
@@ -75,7 +76,7 @@ const Home = () => {
         className={classes.container}
       >
         {[...tutorials].map((t) => (
-          <TutorialCard key={t.id} data={t} />
+          <TutorialDetailsCard key={t.id} data={t} />
         ))}
       </Box>
     </Box>

@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {
+  Box,
   Card,
   CardActions,
   CardContent,
   Button,
   Typography,
+  CircularProgress,
 } from '@material-ui/core';
-
+import axios from 'axios';
+import API_URL from '../../api';
 // modified from https://material-ui.com/components/cards/
 
 const useStyles = makeStyles({
@@ -25,33 +28,45 @@ const useStyles = makeStyles({
   },
 });
 
-const TutorialOverviewCard = ({ data, subject }) => {
+const TutorialOverviewCard = ({ weekNum, subject }) => {
   const classes = useStyles();
+  const [content, setContent] = useState();
+
+  useEffect(() => {
+    const url = `${API_URL}/tutorial-content?week=${weekNum}`;
+    axios.get(url).then((res) => setContent(res.data[0]));
+  }, [weekNum]);
 
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          {subject}
-        </Typography>
-        <Typography variant="h5" component="h2">
-          {data.title}
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          {data.week}
-        </Typography>
-        <ul>
-          {[...data.topics].map((item) => (
-            // hacky capitalise
-            <li key={item.id}>
-              {item.topic.charAt(0).toUpperCase() + item.topic.slice(1)}
-            </li>
-          ))}
-        </ul>
+        {content === undefined ? (
+          <CircularProgress />
+        ) : (
+          <Box>
+            <Typography
+              className={classes.title}
+              color="textSecondary"
+              gutterBottom
+            >
+              {subject}
+            </Typography>
+            <Typography variant="h5" component="h2">
+              {content.title}
+            </Typography>
+            <Typography className={classes.pos} color="textSecondary">
+              Week {content.week}
+            </Typography>
+            <ul>
+              {[...content.topics].map((item) => (
+                // hacky capitalise
+                <li key={item.id}>
+                  {item.topic.charAt(0).toUpperCase() + item.topic.slice(1)}
+                </li>
+              ))}
+            </ul>
+          </Box>
+        )}
       </CardContent>
       <CardActions>
         <Button
@@ -76,8 +91,9 @@ const TutorialOverviewCard = ({ data, subject }) => {
 };
 
 TutorialOverviewCard.propTypes = {
-  data: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  // data: PropTypes.oneOfType([PropTypes.object]).isRequired,
   subject: PropTypes.string.isRequired,
+  weekNum: PropTypes.number.isRequired,
 };
 
 export default TutorialOverviewCard;

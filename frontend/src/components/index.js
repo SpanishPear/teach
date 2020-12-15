@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
 import TutorialOverviewCard from './TutorialOverviewCard';
-import TutorialCard from './TutorialCard';
+import TutorialDetailsCard from './TutorialDetailsCard';
 
-export { TutorialOverviewCard, TutorialCard };
+export { TutorialOverviewCard, TutorialDetailsCard };

@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   },
 });
 
-const TutorialCard = ({ data }) => {
+const TutorialDetailsCard = ({ data }) => {
   const classes = useStyles();
 
   const history = useHistory();
@@ -73,8 +73,8 @@ const TutorialCard = ({ data }) => {
   );
 };
 
-TutorialCard.propTypes = {
+TutorialDetailsCard.propTypes = {
   data: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-export default TutorialCard;
+export default TutorialDetailsCard;
