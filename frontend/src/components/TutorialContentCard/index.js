@@ -54,10 +54,20 @@ const TutorialContentCard = ({ data, subject }) => {
         </ul>
       </CardContent>
       <CardActions>
-        <Button variant="contained" color="primary" size="small">
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          onclick={() => {}}
+        >
           View Content
         </Button>
-        <Button variant="contained" color="primary" size="small">
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          onclick={() => {}}
+        >
           Give Feedback
         </Button>
       </CardActions>

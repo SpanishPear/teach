@@ -21,7 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "push": "react-scripts build && rsync -av build root@site:/var/www/teach.spanishpe.ar/"
+    "push": "react-scripts build && rsync -av build root@site:/var/www/teach.spanishpe.ar/",
+    "help": "echo 'start, build, test, eject or push'"
   },
   "eslintConfig": {
     "extends": [
