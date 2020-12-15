@@ -55,7 +55,6 @@ const TutorialContentPage = () => {
           </Typography>
           <SlidesEmbed link={content.slides_link} />
           {content.code_snippet.map(({ link, platform, title }) => {
-            console.log(link, platform, title);
             return (
               <Paper className={classes.card}>
                 {link}

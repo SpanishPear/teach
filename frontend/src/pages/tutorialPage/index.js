@@ -14,7 +14,6 @@ const LandingPage = () => {
     axios.get(url).then((res) => setTutorial(res.data[0]));
   }, [classcode]);
 
-  console.log(tutorial.weeks);
   return tutorial === undefined ? (
     <Box
       display="flex"

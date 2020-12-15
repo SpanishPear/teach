@@ -40,8 +40,6 @@ const TutorialOverviewCard = ({ weekNum, subject }) => {
     axios.get(url).then((res) => setContent(res.data[0]));
   }, [weekNum]);
 
-  console.log(location.pathname);
-
   return (
     <Card className={classes.root}>
       <CardContent>
