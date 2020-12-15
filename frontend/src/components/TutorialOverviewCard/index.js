@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-const TutorialContentCard = ({ data, subject }) => {
+const TutorialOverviewCard = ({ data, subject }) => {
   const classes = useStyles();
 
   return (
@@ -75,9 +75,9 @@ const TutorialContentCard = ({ data, subject }) => {
   );
 };
 
-TutorialContentCard.propTypes = {
+TutorialOverviewCard.propTypes = {
   data: PropTypes.oneOfType([PropTypes.object]).isRequired,
   subject: PropTypes.string.isRequired,
 };
 
-export default TutorialContentCard;
+export default TutorialOverviewCard;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Box, CircularProgress } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
-import { TutorialContentCard } from '../../components';
+import { TutorialOverviewCard } from '../../components';
 import API_URL from '../../api';
 
 const LandingPage = () => {
@@ -35,7 +35,7 @@ const LandingPage = () => {
           .slice()
           // .reverse() -- perhaps itd be better with the most recent tut first?
           .map((data) => (
-            <TutorialContentCard
+            <TutorialOverviewCard
               subject={tutorial.course_code}
               key={data.id}
               data={data}
