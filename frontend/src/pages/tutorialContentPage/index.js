@@ -6,29 +6,28 @@ import {
   CircularProgress,
   Container,
   Typography,
-  Paper,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import API_URL from '../../api';
 import SlidesEmbed from '../../components/SlidesEmbed';
+import { ReplEmbed } from '../../components';
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-    width: '30%',
-    marginTop: '10px',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
+// const useStyles = makeStyles({
+//   root: {
+//     minWidth: 275,
+//     width: '30%',
+//     marginTop: '10px',
+//   },
+//   title: {
+//     fontSize: 14,
+//   },
+//   pos: {
+//     marginBottom: 12,
+//   },
+// });
 
 const TutorialContentPage = () => {
   const [content, setContent] = useState();
-  const classes = useStyles();
+  // const classes = useStyles();
 
   const { weeknumber } = useParams();
 
@@ -55,13 +54,18 @@ const TutorialContentPage = () => {
           </Typography>
           <SlidesEmbed link={content.slides_link} />
           {content.code_snippet.map(({ link, platform, title }) => {
-            return (
-              <Paper className={classes.card}>
-                {link}
-                {platform}
-                {title}
-              </Paper>
-            );
+            return (() => {
+              switch (platform) {
+                case 'repl':
+                  return <ReplEmbed link={link} title={title} />;
+                case 'github':
+                  return <p>github not supported</p>;
+                case 'gitlab':
+                  return <p>gitlab not supported</p>;
+                default:
+                  return null;
+              }
+            })();
           })}
         </Box>
       )}
