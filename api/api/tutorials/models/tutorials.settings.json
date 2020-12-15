@@ -23,14 +23,14 @@
       "type": "string",
       "required": true
     },
-    "tutorial_contents": {
-      "collection": "tutorial-content"
-    },
     "course_code": {
       "type": "string",
       "default": "COMP1511",
       "regex": "COMP\\d{4}",
       "required": true
+    },
+    "weeks": {
+      "type": "json"
     }
   }
 }

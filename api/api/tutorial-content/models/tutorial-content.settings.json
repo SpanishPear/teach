@@ -37,7 +37,7 @@
       "private": true
     },
     "week": {
-      "type": "string"
+      "type": "integer"
     }
   }
 }
