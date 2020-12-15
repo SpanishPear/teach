@@ -11,6 +11,7 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 import axios from 'axios';
+import { useHistory, useLocation } from 'react-router-dom';
 import API_URL from '../../api';
 // modified from https://material-ui.com/components/cards/
 
@@ -31,11 +32,15 @@ const useStyles = makeStyles({
 const TutorialOverviewCard = ({ weekNum, subject }) => {
   const classes = useStyles();
   const [content, setContent] = useState();
+  const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     const url = `${API_URL}/tutorial-content?week=${weekNum}`;
     axios.get(url).then((res) => setContent(res.data[0]));
   }, [weekNum]);
+
+  console.log(location.pathname);
 
   return (
     <Card className={classes.root}>
@@ -73,7 +78,9 @@ const TutorialOverviewCard = ({ weekNum, subject }) => {
           variant="contained"
           color="primary"
           size="small"
-          onclick={() => {}}
+          onClick={() => {
+            history.push(`${location.pathname}/content/${content.week}`);
+          }}
         >
           View Content
         </Button>
@@ -81,7 +88,7 @@ const TutorialOverviewCard = ({ weekNum, subject }) => {
           variant="contained"
           color="primary"
           size="small"
-          onclick={() => {}}
+          onClick={() => {}}
         >
           Give Feedback
         </Button>
