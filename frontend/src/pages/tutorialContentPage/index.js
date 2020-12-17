@@ -11,64 +11,68 @@ import API_URL from '../../api';
 import SlidesEmbed from '../../components/SlidesEmbed';
 import { ReplEmbed } from '../../components';
 
-// const useStyles = makeStyles({
-//   root: {
-//     minWidth: 275,
-//     width: '30%',
-//     marginTop: '10px',
-//   },
-//   title: {
-//     fontSize: 14,
-//   },
-//   pos: {
-//     marginBottom: 12,
-//   },
-// });
-
 const TutorialContentPage = () => {
-  const [content, setContent] = useState();
+  const [tutorial, setTutorial] = useState([]);
+  const [content, setContent] = useState([]);
   // const classes = useStyles();
 
-  const { weeknumber } = useParams();
+  const { classcode, weeknumber } = useParams();
 
   useEffect(() => {
+    const url = `${API_URL}/tutorials?classcode=${classcode}`;
+    axios.get(url).then((res) => setTutorial(res.data[0]));
+
     axios
       .get(`${API_URL}/tutorial-content?week=${weeknumber}`)
       .then((res) => setContent(res.data[0]));
-  }, [weeknumber]);
+  }, [weeknumber, classcode]);
 
   return (
     <Container>
-      {content === undefined ? (
-        <CircularProgress />
-      ) : (
-        <Box
-          mt={2}
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Typography variant="h2" component="h2" align="center">
-            {content.title}
-          </Typography>
-          <SlidesEmbed link={content.slides_link} />
-          {content.code_snippet.map(({ link, platform, title }) => {
-            return (() => {
-              switch (platform) {
-                case 'repl':
-                  return <ReplEmbed link={link} title={title} />;
-                case 'github':
-                  return <p>github not supported</p>;
-                case 'gitlab':
-                  return <p>gitlab not supported</p>;
-                default:
-                  return null;
-              }
-            })();
-          })}
-        </Box>
-      )}
+      {(() => {
+        if (tutorial === undefined) {
+          return (
+            <Typography variant="h1">
+              Unable to get class {classcode}
+            </Typography>
+          );
+        }
+        if (content === undefined) {
+          return <Box>Unable to fetch content for week {weeknumber}</Box>;
+        }
+        if (content.length === 0 && tutorial.length === 0) {
+          return <CircularProgress />;
+        }
+        return (
+          <Box
+            mt={2}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Typography variant="h2" component="h2" align="center">
+              {content.title}
+            </Typography>
+            <SlidesEmbed link={content.slides_link} />
+            {content.length !== 0 &&
+              content.code_snippet.map(({ link, platform, title }) => {
+                return (() => {
+                  switch (platform) {
+                    case 'repl':
+                      return <ReplEmbed link={link} title={title} />;
+                    case 'github':
+                      return <p>github not supported</p>;
+                    case 'gitlab':
+                      return <p>gitlab not supported</p>;
+                    default:
+                      return null;
+                  }
+                })();
+              })}
+          </Box>
+        );
+      })()}
     </Container>
   );
 };
