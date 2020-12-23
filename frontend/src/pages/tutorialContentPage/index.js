@@ -28,8 +28,11 @@ const TutorialContentPage = () => {
   }, [weeknumber, classcode]);
 
   return (
+    // here be the devils code - IIFE inside IIFE
     <Container>
       {(() => {
+        // theres definitely nicer way to do error handling but.. whatever
+
         if (tutorial === undefined) {
           return (
             <Typography variant="h1">
@@ -37,12 +40,15 @@ const TutorialContentPage = () => {
             </Typography>
           );
         }
+
         if (content === undefined) {
           return <Box>Unable to fetch content for week {weeknumber}</Box>;
         }
+
         if (content.length === 0 && tutorial.length === 0) {
           return <CircularProgress />;
         }
+
         return (
           <Box
             mt={2}
@@ -78,18 +84,3 @@ const TutorialContentPage = () => {
 };
 
 export default TutorialContentPage;
-
-/*
-
-content['code-snippet'].map(({ link, platform, title }) => {
-            console.log(link, platform, title);
-            return (
-              <Box>
-                {link}
-                {platform}
-                {title}
-              </Box>
-            );
-          })
-
-*/
