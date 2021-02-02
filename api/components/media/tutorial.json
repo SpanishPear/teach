@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_media_tutorials",
+  "info": {
+    "name": "tutorial",
+    "icon": "align-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "classcode": {
+      "type": "string"
+    },
+    "lab_demonstrator_name": {
+      "type": "string"
+    },
+    "coursecode": {
+      "type": "string"
+    },
+    "num_enrolled": {
+      "type": "integer"
+    },
+    "weeks": {
+      "type": "json"
+    }
+  }
+}

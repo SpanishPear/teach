@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "all_tutorials",
+  "info": {
+    "name": "all_tutorials"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Tutorial": {
+      "type": "component",
+      "repeatable": false,
+      "component": "media.tutorial"
+    }
+  }
+}
