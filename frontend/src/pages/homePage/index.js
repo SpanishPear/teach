@@ -47,7 +47,7 @@ const Home = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    Axios.get(`${API_URL}/tutorials`).then((res) => setTutorials(res.data));
+    Axios.get(`${API_URL}/all-tutorials`).then((res) => setTutorials(res.data));
   }, []);
 
   return (
@@ -76,7 +76,7 @@ const Home = () => {
         className={classes.container}
       >
         {[...tutorials].map((t) => (
-          <TutorialDetailsCard key={t.id} data={t} />
+          <TutorialDetailsCard key={t.id} data={t.Tutorial} />
         ))}
       </Box>
     </Box>

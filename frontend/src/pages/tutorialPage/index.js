@@ -10,8 +10,15 @@ const LandingPage = () => {
   const { classcode } = useParams();
 
   useEffect(() => {
-    const url = `${API_URL}/tutorials?classcode=${classcode}`;
-    axios.get(url).then((res) => setTutorial(res.data[0]));
+    const url = `${API_URL}/all-tutorials`;
+    axios.get(url).then((res) => {
+      res.data.forEach((_, i) => {
+        // console.log(res.data[i].Tutorial.classcode);
+        if (res.data[i].Tutorial.classcode === classcode) {
+          setTutorial(res.data[i].Tutorial);
+        }
+      });
+    });
   }, [classcode]);
 
   return tutorial === undefined ? (
@@ -35,7 +42,7 @@ const LandingPage = () => {
           .slice()
           .map((weekNum) => (
             <TutorialOverviewCard
-              subject={tutorial.course_code}
+              subject={tutorial.coursecode}
               key={weekNum}
               weekNum={weekNum}
             />

@@ -19,7 +19,7 @@ const TutorialContentPage = () => {
   const { classcode, weeknumber } = useParams();
 
   useEffect(() => {
-    const url = `${API_URL}/tutorials?classcode=${classcode}`;
+    const url = `${API_URL}/all-tutorials?classcode=${classcode}`;
     axios.get(url).then((res) => setTutorial(res.data[0]));
 
     axios
