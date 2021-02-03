@@ -50,7 +50,7 @@ const TutorialDetailsCard = ({ data }) => {
           {data.classcode}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          TA: {data.lab_demonstrator_name}
+          With: {data.lab_demonstrator_name}
         </Typography>
       </CardContent>
       <CardActions>
