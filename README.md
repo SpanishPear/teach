@@ -7,7 +7,7 @@ Insired (heavily) by @insou22's [teach-web project](https://github.com/insou22/t
 
 This project is my first experience with a major fullstack project.
 
-## The frontend
+## The stack
 
 The frontend makes use of:
   * React 
