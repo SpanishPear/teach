@@ -2,7 +2,7 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { TutorialDetailsCard } from '../../components';
 import API_URL from '../../api';
 

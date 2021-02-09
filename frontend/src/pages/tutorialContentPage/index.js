@@ -1,15 +1,18 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import {
   Box,
+  Button,
   CircularProgress,
   Container,
   Typography,
 } from '@material-ui/core';
+import { Link, SaveAlt } from '@material-ui/icons/';
+
 import API_URL, { getClassData } from '../../api';
 import SlidesEmbed from '../../components/SlidesEmbed';
-import { ReplEmbed } from '../../components';
 
 const TutorialContentPage = () => {
   const [tutorial, setTutorial] = useState([]);
@@ -63,25 +66,54 @@ const TutorialContentPage = () => {
               {content.title}
             </Typography>
             <SlidesEmbed link={content.slides_link} />
-            {content.length !== 0 &&
-              content.code_snippet.map(({ link, platform, title }) => {
-                return (() => {
-                  switch (platform) {
-                    case 'repl':
-                      return (
-                        <Box>
-                          <ReplEmbed link={link} title={title} />{' '}
-                        </Box>
-                      );
-                    case 'github':
-                      return <p>github not supported</p>;
-                    case 'gitlab':
-                      return <p>gitlab not supported</p>;
-                    default:
-                      return null;
+            <Box mt={2}>
+              <Typography variant="h4" component="h4">
+                Links and Resources
+              </Typography>
+            </Box>
+            <Box mt={2}>
+              {content.length !== 0 &&
+                content.code_snippet.map(({ link, title }) => {
+                  const query = link.split('?');
+                  let download = `${link}.zip`;
+                  if (query.length > 1) {
+                    download = `${query[0]}.zip`;
                   }
-                })();
-              })}
+                  return (
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography variant="p" component="p">
+                        • {title}
+                      </Typography>
+                      <Box ml={2}>
+                        <Button
+                          href={link}
+                          startIcon={<Link />}
+                          target="_blank"
+                          variant="contained"
+                          color="primary"
+                        >
+                          View
+                        </Button>
+                      </Box>
+                      <Box ml={2}>
+                        <Button
+                          href={download}
+                          startIcon={<SaveAlt />}
+                          target="_blank"
+                          variant="contained"
+                          color="primary"
+                        >
+                          Download
+                        </Button>
+                      </Box>
+                    </Box>
+                  );
+                })}
+            </Box>
           </Box>
         );
       })()}
