@@ -1,2 +1,17 @@
+import axios from 'axios';
+
 const API_URL = process.env.REACT_APP_API_URL;
-export default API_URL;
+
+const getClassData = (classcode, setTutorial) => {
+  const url = `${API_URL}/all-tutorials`;
+  axios.get(url).then((res) => {
+    res.data.forEach((_, i) => {
+      // console.log(res.data[i].Tutorial.classcode);
+      if (res.data[i].Tutorial.classcode === classcode) {
+        setTutorial(res.data[i].Tutorial);
+      }
+    });
+  });
+};
+
+export { API_URL as default, getClassData };

@@ -7,7 +7,7 @@ import {
   Container,
   Typography,
 } from '@material-ui/core';
-import API_URL from '../../api';
+import API_URL, { getClassData } from '../../api';
 import SlidesEmbed from '../../components/SlidesEmbed';
 import { ReplEmbed } from '../../components';
 
@@ -19,8 +19,9 @@ const TutorialContentPage = () => {
   const { classcode, weeknumber } = useParams();
 
   useEffect(() => {
-    const url = `${API_URL}/all-tutorials?classcode=${classcode}`;
-    axios.get(url).then((res) => setTutorial(res.data[0]));
+    // TODO - This is being called multiple times? See network tab for more
+
+    getClassData(classcode, setTutorial);
 
     axios
       .get(`${API_URL}/tutorial-content?week=${weeknumber}`)
@@ -29,6 +30,7 @@ const TutorialContentPage = () => {
 
   return (
     // here be the devils code - IIFE inside IIFE
+    // TODO - refactor
     <Container>
       {(() => {
         // theres definitely nicer way to do error handling but.. whatever
@@ -42,7 +44,7 @@ const TutorialContentPage = () => {
         }
 
         if (content === undefined) {
-          return <Box>Unable to fetch content for week {weeknumber}</Box>;
+          return <Box> Unable to fetch content for week {weeknumber} </Box>;
         }
 
         if (content.length === 0 && tutorial.length === 0) {
@@ -66,7 +68,11 @@ const TutorialContentPage = () => {
                 return (() => {
                   switch (platform) {
                     case 'repl':
-                      return <ReplEmbed link={link} title={title} />;
+                      return (
+                        <Box>
+                          <ReplEmbed link={link} title={title} />{' '}
+                        </Box>
+                      );
                     case 'github':
                       return <p>github not supported</p>;
                     case 'gitlab':

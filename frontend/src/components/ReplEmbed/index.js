@@ -9,7 +9,7 @@ const ReplEmbed = ({ link, title }) => {
       position="relative"
       overflow="hidden"
       width="100%"
-      minHeight="400px"
+      minHeight="600px"
       mt={3}
     >
       <iframe
