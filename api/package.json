@@ -8,7 +8,7 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "push": "rsync -av . root@site:/var/www/api.teach.spanishpe.ar/teach/api"
+    "deploy": "rsync -av . shrey@site:/var/www/api.teach.spanishpe.ar/teach/api"
   },
   "devDependencies": {},
   "dependencies": {
