@@ -84,6 +84,7 @@ const TutorialContentPage = () => {
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
+                      mb={2}
                     >
                       <Typography variant="p" component="p">
                         • {title}
