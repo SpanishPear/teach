@@ -1,6 +1,6 @@
 # Teach
 
-Insired (heavily) by @insou22's [teach-web project](https://github.com/insou22/teach-web) - I set out to build my own website that would be the central place for my students to go in order to: 
+Inspired (heavily) by @insou22's [teach-web project](https://github.com/insou22/teach-web) - I set out to build my own website that would be the central place for my students to go in order to: 
   * View tutorial slides - in advance or during the tutorial. 
   * View the topics for a particular tutorial.
   * Give feedback for a particular tutorial. 
