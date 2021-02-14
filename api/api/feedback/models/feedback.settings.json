@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "feedbacks",
+  "info": {
+    "name": "feedback"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "classcode": {
+      "type": "string"
+    },
+    "week": {
+      "type": "integer"
+    }
+  }
+}

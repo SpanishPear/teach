@@ -77,7 +77,7 @@ const TutorialOverviewCard = ({ weekNum, subject }) => {
           color="primary"
           size="small"
           onClick={() => {
-            history.push(`${location.pathname}/content/${content.week}`);
+            history.push(`${location.pathname}/week/${content.week}/content`);
           }}
         >
           View Content
@@ -86,7 +86,9 @@ const TutorialOverviewCard = ({ weekNum, subject }) => {
           variant="contained"
           color="primary"
           size="small"
-          onClick={() => {}}
+          onClick={() => {
+            history.push(`${location.pathname}/week/${content.week}/feedback`);
+          }}
         >
           Give Feedback
         </Button>
