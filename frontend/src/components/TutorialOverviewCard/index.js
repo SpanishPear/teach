@@ -87,6 +87,7 @@ const TutorialOverviewCard = ({ weekNum, subject }) => {
           color="primary"
           size="small"
           onClick={() => {
+            console.log(`${location.pathname}/week/${content.week}/feedback`);
             history.push(`${location.pathname}/week/${content.week}/feedback`);
           }}
         >
