@@ -20,3 +20,7 @@ The backend makes use of:
  
 The entire project is hosted on a digital ocean box. Learnt about reverse proxying and nginx config files (spoiler, they're a pain). 
   
+# TODO
+ - [ ] Implement caching? Maybe a serviceworker?
+ - [ ] Make a backend route for submitting feedback
+ - [ ] Setup Tutor Dashboard so I can have nice graphics about feedback (think, google forms responses) 
