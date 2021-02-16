@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "feedback",
   "info": {
-    "name": "feedback"
+    "name": "feedback",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -11,10 +12,37 @@
   },
   "attributes": {
     "classcode": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "week": {
+      "type": "integer",
+      "max": 10,
+      "min": 1
+    },
+    "confidence": {
       "type": "integer"
+    },
+    "speed": {
+      "type": "integer"
+    },
+    "overall": {
+      "type": "integer"
+    },
+    "share": {
+      "type": "boolean"
+    },
+    "liked_comment": {
+      "type": "text"
+    },
+    "improve_comment": {
+      "type": "text"
+    },
+    "general_comments": {
+      "type": "text"
+    },
+    "zid": {
+      "type": "string"
     }
   }
 }
