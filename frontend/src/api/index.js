@@ -17,7 +17,7 @@ const getClassData = (classcode, setTutorial) => {
 const submitFeedback = (formData) => {
   return new Promise((resolve, reject) => {
     axios
-      .post('http://localhost:1337/feedback', {
+      .post(`${API_URL}/feedback`, {
         ...formData,
       })
       .then((res) => {
