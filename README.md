@@ -10,8 +10,8 @@ This project is my first experience with a major fullstack project.
 ## The stack
 
 The frontend makes use of:
-  * React 
-  * React-Router to allow SPA and route configurability.
+  * [React](https://reactjs.org/) 
+  * [React-Router](https://reactrouter.com/) to allow SPA and route configurability.
   * [Material-UI](https://material-ui.com/) as a UI Framework
   * [Axios](https://github.com/axios/axios) as a HTTP Request Library
   
