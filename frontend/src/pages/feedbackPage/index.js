@@ -1,25 +1,16 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import {
   Box,
   Typography,
-  Paper,
-  Link,
-  Grid,
   Button,
   CssBaseline,
   Slider,
   TextField,
   Checkbox,
-  RadioGroup,
-  FormLabel,
-  MenuItem,
-  FormGroup,
-  FormControl,
   FormControlLabel,
   makeStyles,
 } from '@material-ui/core';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
 const useStyles = makeStyles((theme) => ({
@@ -50,11 +41,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Form = () => {
+  //  wow that's a LOT of hook
+  const { weeknumber } = useParams();
+  const { enqueueSnackbar } = useSnackbar();
   const classes = useStyles();
-  const { classcode, weeknumber } = useParams();
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const history = useHistory();
-  const location = useLocation();
   const [formData, setFormData] = useState({
     zid: null,
     confidence: 3,
@@ -65,6 +56,7 @@ const Form = () => {
     improved: null,
     comments: null,
   });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
@@ -109,7 +101,7 @@ const Form = () => {
             { value: 2, label: '2' },
             { value: 3, label: '3' },
             { value: 4, label: '4' },
-            { value: 5, label: '5 - can do this in my sleep' },
+            { value: 5, label: '5 - easy' },
           ]}
           min={1}
           onChange={(_, val) => {
@@ -152,11 +144,11 @@ const Form = () => {
           aria-labelledby="discrete-points-slider"
           step={1}
           marks={[
-            { value: 1, label: '1 - Literally falling asleep' },
+            { value: 1, label: '1' },
             { value: 2, label: '2' },
             { value: 3, label: '3 - Perfect' },
             { value: 4, label: '4' },
-            { value: 5, label: '5 - Too Fast!!' },
+            { value: 5, label: '5' },
           ]}
           min={1}
           onChange={(_, val) => {
@@ -205,7 +197,7 @@ const Form = () => {
           control={
             <Checkbox
               color="primary"
-              checked={formData.share ?? true}
+              checked={formData.share == null ? true : formData.share}
               onChange={(e) => {
                 setFormData({ ...formData, share: e.target.checked });
               }}
@@ -214,14 +206,26 @@ const Form = () => {
           label="Permission to share (anonymously) with the class?"
           labelPlacement="start"
         />
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          className={classes.submit}
-        >
-          Submit
-        </Button>
+        <Box display="flex" justifyContent="space-between">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Submit
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.submit}
+            onClick={() => {
+              history.goBack();
+            }}
+          >
+            Cancel
+          </Button>
+        </Box>
       </form>
     </Box>
   );

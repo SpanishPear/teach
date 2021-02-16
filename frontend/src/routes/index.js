@@ -5,6 +5,7 @@ import {
   TutorialPage,
   TutorialContentPage,
   GiveFeedbackPage,
+  NotFoundPage,
 } from '../pages';
 
 const routes = [
@@ -21,7 +22,8 @@ const routes = [
     path="/class/:classcode/week/:weeknumber/feedback"
     component={GiveFeedbackPage}
   />,
-  <Route key="class" path="/class/:classcode" component={TutorialPage} />,
+  <Route exact key="class" path="/class/:classcode" component={TutorialPage} />,
+  <Route key="class" path="/" component={NotFoundPage} />,
 ];
 
 export default routes;

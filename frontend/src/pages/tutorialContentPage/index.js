@@ -62,7 +62,7 @@ const TutorialContentPage = () => {
             alignItems="center"
             justifyContent="center"
           >
-            <Typography variant="h2" component="h2" align="center">
+            <Typography variant="h3" component="h3" align="center">
               {content.title}
             </Typography>
             <SlidesEmbed link={content.slides_link} />
