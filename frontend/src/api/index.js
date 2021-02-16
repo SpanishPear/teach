@@ -14,4 +14,19 @@ const getClassData = (classcode, setTutorial) => {
   });
 };
 
-export { API_URL as default, getClassData };
+const submitFeedback = (formData) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post('http://localhost:1337/feedback', {
+        ...formData,
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export { API_URL as default, getClassData, submitFeedback };

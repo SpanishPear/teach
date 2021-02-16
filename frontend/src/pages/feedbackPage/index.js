@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import {
   Box,
@@ -12,6 +13,8 @@ import {
 } from '@material-ui/core';
 import { useHistory, useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import axios from 'axios';
+import { submitFeedback } from '../../api';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,30 +45,40 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = () => {
   //  wow that's a LOT of hook
-  const { weeknumber } = useParams();
+  const { classcode, weeknumber } = useParams();
   const { enqueueSnackbar } = useSnackbar();
   const classes = useStyles();
   const history = useHistory();
   const [formData, setFormData] = useState({
     zid: null,
+    classcode,
+    week: weeknumber,
     confidence: 3,
     speed: 3,
     overall: 3,
     share: false,
-    liked: null,
-    improved: null,
-    comments: null,
+    liked_comment: null,
+    improve_comment: null,
+    general_comments: null,
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
     history.goBack();
-
-    enqueueSnackbar('Succesfully submitted feedback! Thank you!!', {
-      variant: 'success',
-      autoHideDuration: 2000,
-    });
+    submitFeedback(formData)
+      .then((response) => {
+        console.log(response);
+        enqueueSnackbar('Succesfully submitted feedback! Thank you!!', {
+          variant: 'success',
+          autoHideDuration: 2000,
+        });
+      })
+      .catch((err) => {
+        enqueueSnackbar(`Something went wrong: ${err}`, {
+          variant: 'error',
+          autoHideDuration: 2000,
+        });
+      });
   };
   return (
     <Box className={classes.paper} width="80%" height="80%">
@@ -165,7 +178,7 @@ const Form = () => {
           className={classes.spacing}
           fullWidth
           onChange={(e) => {
-            setFormData({ ...formData, liked: e.target.value });
+            setFormData({ ...formData, liked_comment: e.target.value });
           }}
         />
 
@@ -177,7 +190,7 @@ const Form = () => {
           multiline
           fullWidth
           onChange={(e) => {
-            setFormData({ ...formData, improved: e.target.value });
+            setFormData({ ...formData, improve_comment: e.target.value });
           }}
         />
         <TextField
@@ -188,7 +201,7 @@ const Form = () => {
           multiline
           fullWidth
           onChange={(e) => {
-            setFormData({ ...formData, comments: e.target.value });
+            setFormData({ ...formData, general_comments: e.target.value });
           }}
         />
 
