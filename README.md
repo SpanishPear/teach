@@ -10,8 +10,8 @@ This project is my first experience with a major fullstack project.
 ## The stack
 
 The frontend makes use of:
-  * React 
-  * React-Router to allow SPA and route configurability.
+  * [React](https://reactjs.org/) 
+  * [React-Router](https://reactrouter.com/) to allow SPA and route configurability.
   * [Material-UI](https://material-ui.com/) as a UI Framework
   * [Axios](https://github.com/axios/axios) as a HTTP Request Library
   
@@ -20,3 +20,7 @@ The backend makes use of:
  
 The entire project is hosted on a digital ocean box. Learnt about reverse proxying and nginx config files (spoiler, they're a pain). 
   
+# TODO
+ - [ ] Implement caching? Maybe a serviceworker?
+ - [ ] Make a backend route for submitting feedback
+ - [ ] Setup Tutor Dashboard so I can have nice graphics about feedback (think, google forms responses) 
