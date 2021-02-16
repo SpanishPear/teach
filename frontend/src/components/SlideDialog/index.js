@@ -13,7 +13,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide({
+const AlertDialogSlide = ({
   handleLeftButtonClick,
   handleRightButtonClick,
   leftButtonText,
@@ -21,20 +21,31 @@ export default function AlertDialogSlide({
   title,
   description,
   openButtonText,
-}) {
+  buttonColour,
+}) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (fn) => {
+    if (fn !== undefined && fn !== null) {
+      console.group('function is: ');
+      console.log(fn);
+      console.groupEnd();
+      fn();
+    }
     setOpen(false);
   };
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button
+        variant="contained"
+        color={buttonColour}
+        onClick={handleClickOpen}
+      >
         {openButtonText}
       </Button>
       <Dialog
@@ -52,14 +63,26 @@ export default function AlertDialogSlide({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleLeftButtonClick} color="primary">
+          <Button
+            onClick={() => {
+              handleClose(handleLeftButtonClick);
+            }}
+            color="primary"
+          >
             {leftButtonText}
           </Button>
-          <Button onClick={handleRightButtonClick} color="primary">
+          <Button
+            onClick={() => {
+              handleClose(handleRightButtonClick);
+            }}
+            color="primary"
+          >
             {rightButtonText}
           </Button>
         </DialogActions>
       </Dialog>
     </div>
   );
-}
+};
+
+export default AlertDialogSlide;

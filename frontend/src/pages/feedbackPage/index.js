@@ -13,8 +13,8 @@ import {
 } from '@material-ui/core';
 import { useHistory, useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import axios from 'axios';
 import { submitFeedback } from '../../api';
+import { SlideDialog } from '../../components';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -62,12 +62,11 @@ const Form = () => {
     general_comments: null,
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    history.goBack();
+  const doSubmitFeedback = () => {
     submitFeedback(formData)
       .then((response) => {
         console.log(response);
+        history.goBack();
         enqueueSnackbar('Succesfully submitted feedback! Thank you!!', {
           variant: 'success',
           autoHideDuration: 2000,
@@ -80,9 +79,10 @@ const Form = () => {
         });
       });
   };
+
   return (
     <Box className={classes.paper} width="80%" height="80%">
-      <form onSubmit={handleSubmit}>
+      <form>
         <Typography variant="h4" className={classes.label} gutterBottom>
           Feedback for week {weeknumber} tutorial - (note, not live)
         </Typography>
@@ -220,24 +220,28 @@ const Form = () => {
           labelPlacement="start"
         />
         <Box display="flex" justifyContent="space-between">
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Submit
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.submit}
-            onClick={() => {
+          <SlideDialog
+            handleRightButtonClick={() => {
+              doSubmitFeedback(formData);
+            }}
+            rightButtonText="Confirm"
+            leftButtonText="Go Back"
+            description="Check you've answered everything you want to!! I'm too lazy to implement editing submitted feedback!"
+            title="Are you finished writing feedback?"
+            openButtonText="Submit"
+            buttonColour="primary"
+          />
+          <SlideDialog
+            rightButtonText="Confirm"
+            leftButtonText="Go Back"
+            description="Are you sure you want to leave this page? Your feedback will not be saved :( Please give feedback if you have any!"
+            title="Are you want to leave?"
+            openButtonText="Cancel"
+            buttonColour="secondary"
+            handleRightButtonClick={() => {
               history.goBack();
             }}
-          >
-            Cancel
-          </Button>
+          />
         </Box>
       </form>
     </Box>
