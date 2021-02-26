@@ -9,7 +9,8 @@
     "build": "strapi build",
     "strapi": "strapi",
     "deploy": "rsync -av . shrey@site:/var/www/api.teach.spanishpe.ar/teach/api",
-    "database": "rsync -av .tmp/data.db  shrey@site:/var/www/api.teach.spanishpe.ar/teach/api/.tmp/"
+    "db_push": "rsync -av .tmp/data.db  shrey@site:/var/www/api.teach.spanishpe.ar/teach/api/.tmp/",
+    "db_pull": "cp .tmp/data.db .tmp/data.db.old && rsync -av shrey@site:/var/www/api.teach.spanishpe.ar/teach/api/.tmp/data.db .tmp/data.db"
   },
   "devDependencies": {},
   "dependencies": {
