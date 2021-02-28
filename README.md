@@ -22,5 +22,5 @@ The entire project is hosted on a digital ocean box. Learnt about reverse proxyi
   
 # TODO
  - [ ] Implement caching? Maybe a serviceworker?
- - [ ] Make a backend route for submitting feedback
+ - [x] Make a backend route for submitting feedback
  - [ ] Setup Tutor Dashboard so I can have nice graphics about feedback (think, google forms responses) 
