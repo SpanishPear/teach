@@ -64,7 +64,8 @@ const TutorialOverviewCard = ({ weekNum, subject }) => {
               {[...content.topics].map((item) => (
                 // hacky capitalise
                 <li key={item.id}>
-                  {item.topic.charAt(0).toUpperCase() + item.topic.slice(1)}
+                  {item.topic !== null &&
+                    item.topic.charAt(0).toUpperCase() + item.topic.slice(1)}
                 </li>
               ))}
             </ul>
