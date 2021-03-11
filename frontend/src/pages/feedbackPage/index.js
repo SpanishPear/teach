@@ -84,7 +84,7 @@ const Form = () => {
     <Box className={classes.paper} width="80%" height="80%">
       <form>
         <Typography variant="h4" className={classes.label} gutterBottom>
-          Feedback for week {weeknumber} tutorial - (note, not live)
+          Feedback for week {weeknumber} tutorial
         </Typography>
 
         <TextField
