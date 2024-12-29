@@ -1,3 +1,10 @@
+> [!WARNING]
+> I made this reop and project almost 3 years ago in 2020 - and at the time was my one of my first few attempts of running and owning an end to end system.
+> It was used over three different teaching terms by almost 100+ students, to access course content and provide feedback on each tutorial.
+> It started as a quick weekend project, and has many architecture + design flaws, in favour of quick iterations.
+> The services are no longer deployed, and this repository is Archived :)
+
+
 # Teach
 
 Inspired (heavily) by @insou22's [teach-web project](https://github.com/insou22/teach-web) - I set out to build my own website that would be the central place for my students to go in order to: 
